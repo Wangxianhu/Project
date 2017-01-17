@@ -55,7 +55,7 @@ public class Menu {
 			System.out.println("************************************************************");
 			System.out.println("\t\t请选择小鸟");
 			for (Bird bird : DataInit.birds) {
-				System.out.println("ID:\t"+bird.getId()+"\t鸟的颜色:\t"+bird.getName()+"\t攻击值:\t"+bird.getAttack()+"\t命中率:\t"+bird.getHit()+"\t%");
+				System.out.println("ID:"+bird.getId()+"\t鸟的颜色:"+bird.getName()+"\t攻击值:"+bird.getAttack()+"\t命中率:"+bird.getHit()+"%");
 			}			
 			System.out.println("0、返回上级");
 			System.out.println("请选择（可选五只小鸟发起攻击，可相同也可不同）！");

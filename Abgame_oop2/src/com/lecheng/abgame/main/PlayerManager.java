@@ -4,6 +4,8 @@ import com.lecheng.abgame.bean.Bird;
 import com.lecheng.abgame.bean.Login;
 import com.lecheng.abgame.bean.Player;
 import com.lecheng.abgame.game.DataInit;
+import com.lecheng.abgame.game.PlayGame;
+import com.lecheng.abgame.game.BlueBird;
 import com.lecheng.abgame.ui.Menu;
 import com.lecheng.abgame.util.InputHelper;
 
@@ -56,25 +58,34 @@ public class PlayerManager {
 //玩家操作
 	public void playerOp(){
 			Login l=Menu.getLoginUI();
-//			for (Player player2 : player) {
-//				System.out.println(player2);
-//			}
 			boolean flag=this.chkLogin(l);//检查登陆并返回布尔值
-			if(flag) {//登陆成功界面
+			while (flag) {
 				int key=Menu.getPlayerUI();
-				switch (key) {
+				switch (key) {//登陆成功界面
 				case 1://开始游戏
 					System.out.println("开始游戏");
-					chooseBirds();
+					boolean k=true;
+					while (k) {
+						Bird[] birds=chooseBirds();//选鸟并返回一个鸟组
+						PlayGame pg=new PlayGame();
+						pg.setLogin(l);
+						pg.setBirds(birds);
+						pg.play();
+						System.out.println("是否继续游戏\tY:继续游戏\tN:退出游戏");
+						if(InputHelper.getString().equalsIgnoreCase("n")){
+							k=false;
+						}
+					}					
 					break;
 				case 2://查看成绩
 					System.out.println("查看成绩");
 					break;
 				case 0://返回上级
+					flag=false;
 					break;
 				default:
 					break;
 				}
-			}			
+			}					
 	}
 }
