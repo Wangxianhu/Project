@@ -22,10 +22,12 @@ public class PlayGame {
 		System.out.println("************************************************************");
 		System.out.println("游戏开始：");
 		int sum=0;
+		
 		for (int i = 0; i < 5; i++) {
 			Bird bird=birds[i];
 			System.out.println(bird.getName()+"发起了第"+(i+1)+"次攻击");
-		}	sum+=getSumScore(bird);
+			sum+=getSumScore(bird);
+		}	
 		System.out.println("共计结束：您的总分数是："+sum);
 	}
 //计算攻击后的得分
@@ -47,10 +49,10 @@ public class PlayGame {
 //计算命中率
 	private int getHitValue(Bird b){
 		long l=Math.round(Math.random()*100);
-		int birdAttack=b.getAttack();
-		if(l>=1&&l<=birdAttack){
+		int birdHit=b.getHit();
+		if(l>=1&&l<=birdHit){
 			System.out.println("恭喜！恭喜，命中了。。。");
-			return b.getHit();
+			return b.getAttack();
 		}
 		return 0;
 	}

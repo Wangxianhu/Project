@@ -61,20 +61,24 @@ public class PlayerManager {
 			boolean flag=this.chkLogin(l);//检查登陆并返回布尔值
 			while (flag) {
 				int key=Menu.getPlayerUI();
-				switch (key) {//登陆成功界面
+				switch (key) {//登陆成功后界面
 				case 1://开始游戏
 					System.out.println("开始游戏");
 					boolean k=true;
 					while (k) {
-						Bird[] birds=chooseBirds();//选鸟并返回一个鸟组
-						PlayGame pg=new PlayGame();
-						pg.setLogin(l);
-						pg.setBirds(birds);
-						pg.play();
-						System.out.println("是否继续游戏\tY:继续游戏\tN:退出游戏");
-						if(InputHelper.getString().equalsIgnoreCase("n")){
-							k=false;
-						}
+						Bird[] birds=chooseBirds();//选鸟并返回一个鸟组或空数组
+						if(birds!=null){
+							PlayGame pg=new PlayGame();
+							pg.setLogin(l);
+							pg.setBirds(birds);
+							pg.play();
+							System.out.println("是否继续游戏\tY:继续游戏\tN:退出游戏");
+							if(InputHelper.getString().equalsIgnoreCase("n")){
+								k=false;
+							}
+						}else{
+							break;
+						}						
 					}					
 					break;
 				case 2://查看成绩
